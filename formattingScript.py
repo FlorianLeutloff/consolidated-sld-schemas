@@ -33,7 +33,6 @@ for root, dirs, files in folder_tree:
         text = ""
         with open(f"{root}/{file}","r") as xsd_file:
             text = processFile(xsd_file.read())
-            print(text)
             pass
         target_file_path = f"{target_stem}/{file}"
         print(target_file_path)
