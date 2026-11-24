@@ -4,17 +4,17 @@ import re
 
 def removeImportsIncludes(file_text):
     #remove include statements
-    file_text = re.sub("(\<)(xsd\:include)[\s\d\w\=\"\:\\/\.]*(\>)[\s\n]*", "", file_text)
+    file_text = re.sub("(\<)(xsd\:include)[\s\d\w\=\"\:\\/\.]*(\>)", "", file_text)
     #remove import statements
-    file_text = re.sub("(\<)(xsd\:import)[\s\d\w\=\"\:\\/\.]*(\>)[\s\n]*", "", file_text)
+    file_text = re.sub("(\<)(xsd\:import)[\s\d\w\=\"\:\\/\.]*(\>)", "", file_text)
     return file_text
     pass
 
 def stripSubFile(sub_file_text):
     #(\<xsd\:schema)[\s\d\w\=\"\:\\/\.]*(\>) only opening tag
     #(\<)(\/)*(xsd\:schema)[\s\d\w\=\"\:\\/\.]*(\>) opening and closing tag
-    sub_file_text = re.sub("(\<)(\/)*(xsd\:schema)[\s\d\w\=\"\:\\/\.]*(\>)[\s\n]*", "", sub_file_text)
-    sub_file_text = re.sub("(\<\?xml){1}[\s\d\w\=\"\:\\/\.\-]*(\?\>){1}[\s\n]*", "", sub_file_text)
+    sub_file_text = re.sub("(\<)(\/)*(xsd\:schema)[\s\d\w\=\"\:\\/\.]*(\>)", "", sub_file_text)
+    sub_file_text = re.sub("(\<\?xml){1}[\s\d\w\=\"\:\\/\.\-]*(\?\>){1}", "", sub_file_text)
     sub_file_text = removeImportsIncludes(sub_file_text)
     return sub_file_text
     pass
@@ -77,6 +77,7 @@ for config in config_list:
             pass
         pass 
     root_file_text = closeRootFileTextStructure(root_file_text)
+    root_file_text = re.sub("((\s)*(\n)){2,}","\n",root_file_text)
     os.makedirs(destination_path,exist_ok=True)
     with open(f"{destination_path}/{config["destination_file_name"]}", "w") as destination_file:
         destination_file.write(root_file_text)
