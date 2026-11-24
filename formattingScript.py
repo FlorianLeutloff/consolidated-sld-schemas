@@ -12,10 +12,10 @@ def processFile(text):
     pass
     return text
 
-rootpath = "formatting_errors"
+root_path = "formatting_errors"
 
-beginning = f"{rootpath}/unprocessed"
-destination = f"{rootpath}/processed"
+beginning = f"{root_path}/unprocessed"
+destination = f"{root_path}/processed"
 
 
 folder_tree = os.walk(beginning);
