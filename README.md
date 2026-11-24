@@ -3,5 +3,5 @@ Collection of the different xsd-schemas required for StyledLayerDescriptor, edit
 
 formattingScript.py has scripts for levelling multi-line elements into a single line
 
-# to do
-- needs basic xlink schemas
+# notes
+- unified scripts are unuseable for traditional xml-libraries doing validation due to elimination of imports and includes
